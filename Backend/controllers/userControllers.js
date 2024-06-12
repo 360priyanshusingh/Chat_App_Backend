@@ -2,64 +2,19 @@ const asyncHandler = require('express-async-handler');
 const express = require('express');
 const User = require('../models/userModel');
 const generateToken=require('../config/generateToken')
-// const app = express();
 
-// const registerUser = asyncHandler(async(req,res) => {
-//     // res.send("This is the API running  third  time successfully");
-//     console.log(`this the registerUser page`)
-//  try {
-//      // Remove unnecessary `next()` call
-//   // next();
-//   const { name, email, password, pic } = req.body; // Use destructuring to extract values
-
-//   if (!name || !password || !email) {
-//     res.status(400);
-//     throw new Error("Please enter all fields"); // Fix typo in the error message
-//   }
-//   console.log('Before creating user');
-
-//   const userExists = await User.findOne({ email }); // Fix typo in the method name
-
-//   if (userExists) {
-//     res.status(400);
-//     throw new Error("User already exists"); // Fix typo in the error message
-//   }
-
-//   const user = await User.create({
-//     email,
-//     name,
-//     password,
-//     pic,
-//     // Remove unnecessary _id, MongoDB will generate it automatically
-//   });
-
-//   console.log('After creating user');
-
- 
-//   if (user) {
-//     res.status(201).json({
-//       _id: user._id,
-//       name: user.name,
-//       email: user.email,
-//       pic: user.pic,
-//       token:generateToken(user._id),
-//     });
-//   } else {
-//     res.status(400);
-//     throw new Error("Failed to create user");
-//   }
-//  } catch (error) {
-//     console.error('Error in registerUser:', error);
-//     res.status(500).send('Internal Server Error');
-//  }
-// });
 
 const registerUser = asyncHandler(async (req, res) => {
-  console.log('This is the registerUser page');
-  try {
-    const { name, email, password, pic } = req.body;
 
-    if (!name || !password || !email) {
+  console.log('This is the registerUser page');
+  
+  try {
+
+    const { name, email, password} = req.body;
+
+    const pic = req.file ? req.file.filename : null;
+
+    if (!name || !password || !email ) {
       res.status(400).json({ error: "Please enter all fields" });
       return;
     }
@@ -95,6 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+
 module.exports = registerUser;
 
 
@@ -102,6 +58,9 @@ const authUser=asyncHandler(async(req,res)=>{
  
   const {email,password}= req.body;
   const user = await User.findOne({ email });
+  if(user && user.status==='inactive'){
+    return res.json( {message :"User is not active"})
+  }
 
   if(user && (await user.matchPassword(password))){
     res.json({

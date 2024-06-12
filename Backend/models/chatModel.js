@@ -6,9 +6,9 @@ const chatModel = mongoose.Schema(
         isGroupChat:{type:Boolean,default:false},
         users:[
             {
-                type:mongoose.Schema.Types.ObjectId,
-                ref:"User",
-            },
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User'
+            }
         ],
         latestMassage:{
             type:mongoose.Schema.Types.ObjectId,
@@ -26,3 +26,4 @@ const chatModel = mongoose.Schema(
 const Chat = mongoose.model("Chat", chatModel);
 
 module.exports = Chat;
+

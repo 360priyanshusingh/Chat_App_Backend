@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
+const Admin= require("../models/AdminModel")
 const jwt=require("jsonwebtoken");
 
 //@description     Create or fetch One to One Chat
@@ -10,13 +11,9 @@ const jwt=require("jsonwebtoken");
 const accessChat = asyncHandler(async (req,res,next) => {
 
   
-    const {userId}= req.body;  
-    // const token = req.headers.authorization.split(" ")[1];
-    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    // console.log("Decoded Token:", decoded); // Log the decoded token
-    // req.user = await User.findById(decoded.id).select("-password");
-    // console.log("User from DB:", req.user._id); // Log the user fetched from the database
- console.log(req.user );
+const {userId}= req.body; 
+console.log(req);
+
   if (!userId) {
     return res.status(400).json({ error: 'UserId param not sent with request' });
   }
@@ -32,8 +29,8 @@ const accessChat = asyncHandler(async (req,res,next) => {
       { users: { $elemMatch: { $eq: userId } } },
     ],
   })
-    .populate("users", "-password")
-    .populate("latestMessage");
+    .populate({path:"users", model: 'User'})
+   
 
   isChat = await User.populate(isChat, {
     path: "latestMessage.sender",
@@ -53,10 +50,11 @@ const accessChat = asyncHandler(async (req,res,next) => {
    
     try {
       const createdChat = await Chat.create(chatData);
-      const FullChat = await Chat.findOne({ _id: createdChat._id }).populate(
-        "users",
-        "-password"
-      );
+      const FullChat = await Chat.findOne({ _id: createdChat._id })
+      .populate({path:"users", model: 'User'})
+    
+    
+
       res.status(200).json(FullChat);
     } catch (error) {
       res.status(400);
@@ -92,10 +90,7 @@ const accessChat = asyncHandler(async (req,res,next) => {
 const fetchChats = asyncHandler(async (req, res) => {
   try {
     Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
-      .populate({
-        path: "users",
-        select: "name pic email", // Add the fields you want to populate for the 'users' array
-      })
+      .populate({path: "users",select: "name pic email", })
       .populate("groupAdmin", "-password")
       .populate({
         path: "latestMassage",
@@ -293,6 +288,8 @@ const removeFromGroup = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+
 
 
 module.exports = { accessChat ,removeFromGroup,addToGroup,fetchChats,renameGroup,createGroupChat};

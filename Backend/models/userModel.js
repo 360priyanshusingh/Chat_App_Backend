@@ -17,6 +17,8 @@ const userSchema = mongoose.Schema(
       required: true,
       default: false,
     },
+    status:{type:String,required:true, default:"active"},
+    date:{type:Date,default:Date.now}
   },
   { timestaps: true }
 );

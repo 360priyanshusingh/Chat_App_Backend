@@ -1,0 +1,144 @@
+[{
+  "_id": {
+    "$oid": "65f0a5c6ae530f03977f8d15"
+  },
+  "chatName": "sender",
+  "isGroupChat": false,
+  "users": [
+    {
+      "$oid": "65f099bcbda0a51d6766b1e7"
+    },
+    {
+      "$oid": "65f09a45bda0a51d6766b229"
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-12T18:58:14.658Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-12T18:58:14.658Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f0a5f6ae530f03977f8d1e"
+  },
+  "chatName": "family",
+  "isGroupChat": true,
+  "users": [
+    {
+      "$oid": "65f099bcbda0a51d6766b1e7"
+    },
+    {
+      "$oid": "65f09a45bda0a51d6766b229"
+    },
+    {
+      "$oid": "65f09986bda0a51d6766b1e0"
+    }
+  ],
+  "groupAdmin": {
+    "$oid": "65f099bcbda0a51d6766b1e7"
+  },
+  "createdAt": {
+    "$date": "2024-03-12T18:59:02.281Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-13T06:19:59.191Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f142d24628c25731618e82"
+  },
+  "chatName": "sender",
+  "isGroupChat": false,
+  "users": [
+    {
+      "$oid": "65f13abe91cd4dd2c6784e69"
+    },
+    {
+      "$oid": "65f09986bda0a51d6766b1e0"
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-13T06:08:18.610Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-13T06:08:18.610Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f1455c2f370c5cbdc5c3d5"
+  },
+  "chatName": "sender",
+  "isGroupChat": false,
+  "users": [
+    {
+      "$oid": "65f09a45bda0a51d6766b229"
+    },
+    {
+      "$oid": "65f09986bda0a51d6766b1e0"
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-13T06:19:08.560Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-13T06:19:08.560Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f145bc2f370c5cbdc5c407"
+  },
+  "chatName": "sender",
+  "isGroupChat": false,
+  "users": [
+    {
+      "$oid": "65f13abe91cd4dd2c6784e69"
+    },
+    {
+      "$oid": "65f09a45bda0a51d6766b229"
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-03-13T06:20:44.231Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-13T06:20:44.231Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f145cf2f370c5cbdc5c410"
+  },
+  "chatName": "CSE Group",
+  "isGroupChat": true,
+  "users": [
+    {
+      "$oid": "65f099bcbda0a51d6766b1e7"
+    },
+    {
+      "$oid": "65f09a45bda0a51d6766b229"
+    },
+    {
+      "$oid": "65f13abe91cd4dd2c6784e69"
+    }
+  ],
+  "groupAdmin": {
+    "$oid": "65f13abe91cd4dd2c6784e69"
+  },
+  "createdAt": {
+    "$date": "2024-03-13T06:21:03.992Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-13T06:25:07.078Z"
+  },
+  "__v": 0
+}]
